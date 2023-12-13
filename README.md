@@ -226,7 +226,7 @@ The purpose of this code is to transcribe the speech from the given audio file u
 now import this function in main.py
 from functions.openai_requests import convert_audio_to_text,get_chat_response
 
-@app.post("/post-audio/")
+@app.post("/post-audio-get/")
 async def post_audio(file: UploadFile = File(...)):
 
 #get saved audio
@@ -237,5 +237,218 @@ async def post_audio(file: UploadFile = File(...)):
 
 
 convert_audio_to_text(audio_input)
+
+so above the function we open the audio input and read it as read bytes and calling the function with the audio input and passing to the whisper-1 and as a result we return the text as object we are geting the output as a text .so in open ai docs post-audio-get execute the endpoint.
+
+#PROMPT ENGINEERING(https://platform.openai.com/docs/guides/text-generation/chat-completions-api)
+from openai import OpenAI
+client = OpenAI()
+
+response = client.chat.completions.create(
+  model="gpt-3.5-turbo",
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Who won the world series in 2020?"},
+    {"role": "assistant", "content": "The Los Angeles Dodgers won the World Series in 2020."},
+    {"role": "user", "content": "Where was it played?"}
+  ]
+)
+
+using prompt engineering telling the sysytem that what it is here i did a Technical interviewer for software developer junior engineer post.
+Build up database for chat log un json file.
+
+setup Database.py here we going to create get recent message function this is going to essentially build whatever converstion going to feed into chatgpt in latest conversation.
+
+#defining the file name where message gonna store
+file_name="stored_data.json"
+    #confining the ai trying to tell ai what exactly you expect this is called promt engineering
+    learn_instruction={
+        "role":"system",
+        "content":"you are interviewing the user for a job as a software Engineer .Ask short questions that are relevant to the junior position.Your name is Echo.The user name is Tanmay keep your answer under 30 words ."
+    }
+
+#initializing messages
+ messages = []
+
+#adding random  for making interesting prompt engineering giving ai humour
+
+ x=random.uniform(0,1)
+
+#making 50% chance of chatgpt humour 
+
+if x<0.5:
+        learn_instruction["content"] = learn_instruction["content"] + "your response will include some dry humour."
+    else:
+        learn_instruction["content"] = learn_instruction["content"] + "your respose will include a rather challenging question."
+ #append the instruction to messages    
+    messages.append(learn_instruction)
+
+#creating function for adding the data into stored_data.json from messages
+try:
+    with open(file_name) as user_file:
+        #opening the json file
+        data = json.load(user_file)
+        #appending the last 5 items of data
+        if data:
+            if len(data) < 5:
+                for item in data:
+                    messages.append(item)
+            else:
+                for item in data[-5:]:
+                    messages.append(item)
+except  Exception as e:
+    print(e)
+    pass
+#return messages
+return messages
+
+#GETTING RESPONSE FROM CHATGPT
+in open_ai_request.py
+
+def get_chat_response(message_input):
+#this get_recent_messages coming from database.get the recent messages
+    messages = get_recent_messages()
+    #latest message
+    user_message = {
+        "role":"user",
+        #message_input is recent audio message which is decoded and passes into the get_chat_response function
+        "content":message_input
+    }
+    messages.append(user_message)
+    print(messages)
+    #calling openai
+    try:
+        #getting resopnse from chatGpt
+        response=openai.ChatCompletion.create(
+            #chatgpt model
+            model="gpt-3.5-turbo",
+            #whole row user content
+            messages=messages
+        )
+        #message we get from chatgpt
+        message_text = response["choices"][0]["message"]["content"]
+        return message_text
+    except Exception as e:
+        print(e)
+        return
+
+
+creating function to get the response from chatgpt passing the decoded message to the function and now we are calling the get_recent_messages_function so import this function in to this file now user message={"role":"user", "message":("decoded message" text cinverted from audio)message_input} that will be our latest message to our chatgpt and then append the user_message to messages now call open ai to get response=openai.ChatCompletion.create(mosel="gpt-3.5-turbo" messages=messages) now message_text=response["choices"]we getting object from chatgpt it will be the 1st item and message and message content returns from chatgpt now get that chat response and  passing messagr decoded 
+
+import get chatresponse in main.py
+
+#STORING THE MESSAGES IN DATABASE
+
+def store_messages(request_message,response_message): 
+
+    #define the file name
+    file_name="stored_data.json"
+    #Get recent messages excluded 1st messages
+    messages=get_recent_messages()[1:]
+    #add messages to the data
+    user_message ={"role":"user","content":request_message}
+    assistant_message={"role":"assistant","content":response_message}
+    messages.append(user_message)
+    messages.append(assistant_message)
+    with open(file_name,"w")as f:
+        json.dump(messages,f)
+    
+
+here excluding the 1st message learn_instruction={"role":"assistant","content":"interviewer"}this message we exclude that added in the message list at the begining. opening and saving the message in to the json file. now in main.py call the functions   store_messages(message_decoded,chat_response)
+
+
+#CREATING RESET FUNCTION
+
+def reset_message():
+
+    #open the file and overwrite with nothing
+    open("stored_data.json,"w")
+go to the main.py and add the endpoint
+@app.get("/reset")
+async def reset_conversation();
+    reset_message()
+    return{"message":"conversation reset"}
+
+#TEXT_TO_SPEECH CONVERT USING ELVEN LABS
+
+import requests
+from decouple import config
+
+ELEVEN_LABS_API_KEY=config("ELEVEN_LABS_API_KEY")
+
+#ELeven labs
+#convert Text to speech
+
+def convert_text_to_speech(message):
+    #define the data(Body)
+    body={
+
+        "text":message,
+        "voice_settings":{
+            "stability": 0,
+            "similarity_boost": 0,
+        }
+
+    }
+    voice_EchoTalk="21m00Tcm4TlvDq8ikWAM"
+
+    #header
+    headers={"xi-api-key":ELEVEN_LABS_API_KEY,"Content-Type":"application/json", "accept":"audio/mpeg"}
+    #api end point
+    endpoint=f"https://api.elevenlabs.io/v1/text-to-speech/{voice_EchoTalk}"
+
+    #send request
+
+    try:
+        response=requests.post(endpoint,json=body,headers=headers)
+
+    except Exception as e:
+        print(e)
+        return
+    #handle response
+    if response.status_code == 200:
+        return response.content
+    else:
+        return
+
+
+and in main.py
+
+  audio_output=convert_text_to_speech(chat_response)
+
+    #gurd: Ensure message decoded
+    
+    if not audio_output:
+        return HTTPException(status_code=400 ,detail="Failed to get Eleven labs audio response")
+    
+    #create a generater that yields chunk of data
+    def iterfile():
+        yield audio_output
+    #return the audio file
+    return StreamingResponse(iterfile(), media_type="application/octet-stream")
+ 
+#sending audiofile with frontend and returning audio as stream-octent
+
+@app.post("/post-audio/")
+async def post_audio(file: UploadFile = File(...)):
+
+    #get saved audio
+    #audio_input=open("TanmayVoice.mp3","rb")
+
+    #save file from frontend
+    with open(file.filename,"wb") as buffer:
+        buffer.write(file.file.read())
+
+    audio_input=open(file.filename,"rb")
+
+     #return the audio file
+    return StreamingResponse(iterfile(), media_type="application/octet-stream")
+ 
+
+
+
+
+
+
 
 
