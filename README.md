@@ -1,6 +1,9 @@
 # Echo
 Echo ChatGpt AI voice chatbot using OpenAi Chat model-gpt-3.5-turbo  Audio model-whisper-1  text-to-speech-Elevenlabs Rachel AI voice 
 
+Backend
+![Backend](https://github.com/TANMAY980/EchoTalk/assets/65010491/904e227f-f4e7-4558-9cea-727e29e9b2b4)
+
 #Extentions
 Auto Close Tag, Auto Rename Tage, ES7-React/redux snippets(for creating react function), isort, prettier-code formatter,Python,Tailwind Css intellisense(suggesting of color and code),Pylance 
 
