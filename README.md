@@ -444,6 +444,9 @@ async def post_audio(file: UploadFile = File(...)):
      #return the audio file
     return StreamingResponse(iterfile(), media_type="application/octet-stream")
  
+#FRONTEND
+![frontend](https://github.com/TANMAY980/EchoTalk/assets/65010491/a3901b0f-5624-4adf-83ce-73390684d63c)
+
 
 
 
