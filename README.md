@@ -2,6 +2,17 @@
 Echo ChatGpt AI voice chatbot using OpenAi Chat model-gpt-3.5-turbo  Audio model-whisper-1  text-to-speech-Elevenlabs Rachel AI voice 
 
 Backend
+Technologies-python,FastApi,chatGpt model,elvenLabs
+steps in Backend-
+Imports
+CORS-cross origin resource sharing frontend to Backend
+Health Entrypoint-
+    API Route EndPoint
+    1)save the audio input
+    2)convert audio to text
+    3)get chatbot response
+    4)add to chat history
+    5)convert text to speech
 ![Backend](https://github.com/TANMAY980/EchoTalk/assets/65010491/904e227f-f4e7-4558-9cea-727e29e9b2b4)
 
 #Extentions
@@ -132,6 +143,99 @@ OPEN_AI_API_KEY=enter you key
 OPEN_AI_ORG_KEY=enter you key
 ELEVEN_LABS_KEY=enter you key
 
+Backend
+steps in Backend-
+Imports-
+from fastapi import FastAPI, File, UploadFile, HTTPException
+from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
+from decouple import config(this going to allow us to bring in the environment variable that we saved in the environment setup
+import openai
 
+#Initate
+app = FastAPI()
+
+CORS-CORS is a node. js package for providing a Connect/Express middleware that can be used to enable CORS with various options.cross origin resource sharing frontend to Backend (what app going to allow we have backend running on DomainApi.com need to accept any request from echo.com this is where we can
+dictate what domain urls you will accept in your backend)
+origins=[
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://localhost:4173",
+    "http://localhost:4174",
+    "http://localhost:3000",
+]
+#CORS-Middleware- This middleware provides a comprehensive, configurable implementation of the CORS (Cross Origin Resource Sharing) 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins, (allow originis that allow origins)
+    allow_credentials=True,(allowing credentials by setting True)
+    allow_methods=["*"],(allowing all methods using *)
+    allow_headers=["*"],(allowing all headers using *)
+)
+
+Health Entrypoint-
+    API Route EndPoint
+    1)save the audio input
+    2)convert audio to text
+    3)get chatbot response
+    4)add to chat history
+    5)convert text to speech
+
+#About Docs and Endpoints
+FastApi Provides built in documentation
+test our endpoint using Documentation which is provided by Fastapi i dont have to write any API Documentation
+main endpoint sending a post request from react application (PostEndpoint) sending an audio file with data to an endpoint not playing the audio in the Browser in POST endpoint
+
+@app.post("/post-audio/")
+async def post_audio(file: UploadFile = File(...)): (sending file into the Fastapi on the Backend)
+
+
+#convert Voice to Text with Whisper
+create a function in functions folder in Backend
+
+import openai
+from decouple import config
+#Retrieve ENV variables
+openai.organization=config("OPEN_AI_ORG")
+openai.api_key = config("OPEN_AI_KEY")
+
+#open_ai -whisper
+#convert audio to text
+
+def convert_audio_to_text(audio_file):
+    try:
+        transcript=openai.Audio.transcribe("whisper-1",audio_file) 
+        message_text=transcript["text"](returning the result of transcript as text object)
+        return message_text
+    except Exception as e:
+        print(e)
+        return
+        
+transcript=openai.Audio.transcribe("whisper-1",audio_file) 
+
+openai: This is likely an instance of the OpenAI Python library. The library provides a convenient way to interact with OpenAI's APIs.
+
+Audio.transcribe: This is a method or function provided by the OpenAI library for transcribing audio. It's used to convert spoken language in the audio file into text.
+
+"whisper-1": This is the model identifier or name. In this case, it appears to be using a model called "whisper-1." Models in the OpenAI API often have specific characteristics or are trained for certain tasks.
+
+audio_file: This is the path or content of the audio file that you want to transcribe. It could be a local file path or the actual audio content.
+
+The purpose of this code is to transcribe the speech from the given audio file using the specified OpenAI model ("whisper-1"). The transcribed text is the output of this operation and can be used for various natural language processing tasks or applications where you need the spoken content converted into written text.
+
+now import this function in main.py
+from functions.openai_requests import convert_audio_to_text,get_chat_response
+
+@app.post("/post-audio/")
+async def post_audio(file: UploadFile = File(...)):
+
+#get saved audio
+    audio_input=open("TanmayVoice.mp3","rb")
+
+#decode audio
+    message_decoded=convert_audio_to_text(audio_input)
+
+
+convert_audio_to_text(audio_input)
 
 
