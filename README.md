@@ -445,7 +445,80 @@ async def post_audio(file: UploadFile = File(...)):
     return StreamingResponse(iterfile(), media_type="application/octet-stream")
  
 #FRONTEND
+
+
 ![frontend](https://github.com/TANMAY980/EchoTalk/assets/65010491/a3901b0f-5624-4adf-83ce-73390684d63c)
+
+now switch to frontend folder and create components folder inside src and create controller.tsx and import conroller in App.tsx to check the controller running fine run command yarn dev.
+
+in controller importing usestate from react  
+
+function Controller(){
+const[loading,isLoading]=useState(false);
+const[message,setMessages]=useState<any[]>([]);
+
+const CreateBlobUrl=(data:any)=>{};
+
+handlestop is going to do when user stop recording thats going to trigger off the event to go and  send that recording to stop recordng 
+and send it to our backend
+const handlestop =async()=>{
+}
+
+#Title component-
+here we are going to use props for the reset messages to use in title section
+
+PROPS-
+In React, props (short for properties) are a way to pass data from a parent component to a child component. They are one of the fundamental concepts of React and play a crucial role in building modular and reusable components. Here are some reasons why props are used in React:
+
+Component Communication:
+
+Parent to Child Communication: Props allow you to pass data from a parent component to a child component. This enables the parent to communicate with its children and share information.
+Reusability:
+
+By passing props, you can create reusable components that can be used in different parts of your application. These components can accept different data through props, making them versatile.
+Dynamic Content:
+
+Props enable the dynamic rendering of content. You can pass different values to the same component and have it render different content based on the provided props.
+Configuration:
+
+Props can be used to configure a component's behavior. For example, you might pass a boolean prop to determine whether a component should display a certain feature.
+Maintainability:
+
+Props make it easier to understand and maintain your code. When a component relies on props for its data, it becomes more self-contained and easier to reason about.
+Consistent Interface:
+
+Props define the interface of a component. By looking at a component's props, you can understand what data it expects and how it can be customized.
+Here's a simple example to illustrate how props work:
+
+jsx
+Copy code
+// ParentComponent.jsx
+import ChildComponent from './ChildComponent';
+
+function ParentComponent() {
+  const dataForChild = "Hello from parent!";
+
+  return (
+    <div>
+      <ChildComponent message={dataForChild} />
+    </div>
+  );
+}
+
+// ChildComponent.jsx
+function ChildComponent(props) {
+  return <p>{props.message}</p>;
+}
+
+In this example, ParentComponent passes a prop called message to ChildComponent, and the child component displays that message using props.message. This is a basic illustration of how props facilitate communication between components.
+
+
+
+
+
+
+
+
 
 
 
