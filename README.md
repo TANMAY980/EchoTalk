@@ -1,6 +1,10 @@
 # Echo
 Echo ChatGpt AI voice chatbot using OpenAi Chat model-gpt-3.5-turbo  Audio model-whisper-1  text-to-speech-Elevenlabs Rachel AI voice 
+#full architecture of the project
 
+![full application Architecture](https://github.com/TANMAY980/EchoTalk/assets/65010491/83bdbcde-786e-4428-9285-bf4805912bd5)
+
+![Screenshot (471)](https://github.com/TANMAY980/EchoTalk/assets/65010491/2c4e6db8-8ecc-4ed0-a88f-325bd8f817d7)
 Backend
 Technologies-python,FastApi,chatGpt model,elvenLabs
 steps in Backend-
