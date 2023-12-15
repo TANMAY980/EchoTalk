@@ -31,6 +31,17 @@ before starting the conversation we can see there is a message bouncing ask echo
 #now further conversation we can see all the conversation using scroll down and up
 ![Screenshot (486)](https://github.com/TANMAY980/EchoTalk/assets/65010491/eb318ad5-22be-457e-9d78-0aefd9b9143d)
 #now we have reset our messages
+before reseting our database file
+![Screenshot (478)](https://github.com/TANMAY980/EchoTalk/assets/65010491/0526c45c-0f58-4e4b-8f68-24c3461d85bc)
+while reseting
+![Screenshot (479)](https://github.com/TANMAY980/EchoTalk/assets/65010491/19ab91fd-ddb3-42ed-9087-8b9c8726ba4c)
+#frontend view after reseting the chat 
+![Screenshot (480)](https://github.com/TANMAY980/EchoTalk/assets/65010491/080a091d-9bb3-4ab8-a42b-caeac7b877f7)
+#after reseting the chat stored_data.json file
+![Screenshot (481)](https://github.com/TANMAY980/EchoTalk/assets/65010491/4e9d1d3b-0658-4bb2-a46c-cc5f7b0ac974)
+
+
+
 ![Screenshot (487)](https://github.com/TANMAY980/EchoTalk/assets/65010491/634734bf-774e-4a3b-9fc9-e12b6c0a56e8)
 
 
