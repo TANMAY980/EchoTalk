@@ -9,7 +9,8 @@ Echo ChatGpt AI voice chatbot using OpenAi Chat model-gpt-3.5-turbo  Audio model
 #sending post request through fasapi
 ![sending post request through fasapi](https://github.com/TANMAY980/EchoTalk/assets/65010491/fc212ba4-99cb-42f7-9378-adc91d3fde49)
 #getting succesfully response
-![getting succesfully response](https://github.com/TANMAY980/EchoTalk/assets/65010491/d47bf5bd-9eff-4154-952c-410c15761ba4)
+![getting succesfully response](https://github.com/TANMAY980/EchoTalk/assets/65010491/a2496a8a-9752-473d-b79b-88a8a1765a1a)
+
 #usage of openai whisper after sending audio file and giving back response
 ![usage of whisper](https://github.com/TANMAY980/EchoTalk/assets/65010491/0cf23ad0-bc79-4953-a7c9-69b98d6a97ff)
 #caution- in these screenshot you might see the name of the voice Ai chatbot is different during development time i set the name of the chatbot is EchoTalk and after development while testing faces some issue with the name during testing like when i say EchoTalk Whisper consfused with pronunciation so i changed it to Echo light word with clear pronunciaton althoug here also i m getting issue with the name but it recognize few times
