@@ -18,6 +18,23 @@ you can see it's correct me by saying "I am EchoTalk" currently i am getting res
 #in fastapi document which is builtin in fasiapi here we can see the audio file 
 ![audio in fastapidoc](https://github.com/TANMAY980/EchoTalk/assets/65010491/bff02b71-8b5c-4bc2-a46d-9d540c367cc1)
 
+#all the responses from eleven labs text to speech
+![elvenlabs text voice to](https://github.com/TANMAY980/EchoTalk/assets/65010491/ef11672c-4351-4f1d-8fc0-153223729b6e)
+#complete frontend ui
+before starting the conversation we can see there is a message bouncing ask echo with your voice and in the background json file there is no messages stored. and recoding status showing idle
+![Screenshot (482)](https://github.com/TANMAY980/EchoTalk/assets/65010491/5f8cc2e3-6399-4d3a-a052-e76ca712198f)
+#now after my voice recorded it send to the backend it is showing that let me answer your question and recording button status showing stopped.you can see that stored_message.json file is empty because there is no message at this point
+![Screenshot (483)](https://github.com/TANMAY980/EchoTalk/assets/65010491/ca3a065a-35e1-42db-8c2b-553c866504db)
+#after record  pass to the backend and message stored into the database file the we getting the audio file in the frontent we can play and download our audio file we have now both audio file mine and echo voice audio file and echo's reply is automatically being played as a response 
+![Screenshot (485)](https://github.com/TANMAY980/EchoTalk/assets/65010491/c5bf8400-1cfa-435b-8df9-d88043af8abb)
+
+#now further conversation we can see all the conversation using scroll down and up
+![Screenshot (486)](https://github.com/TANMAY980/EchoTalk/assets/65010491/eb318ad5-22be-457e-9d78-0aefd9b9143d)
+#now we have reset our messages
+![Screenshot (487)](https://github.com/TANMAY980/EchoTalk/assets/65010491/634734bf-774e-4a3b-9fc9-e12b6c0a56e8)
+
+
+
 
 
 Backend
