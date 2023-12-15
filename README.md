@@ -3,8 +3,23 @@ Echo ChatGpt AI voice chatbot using OpenAi Chat model-gpt-3.5-turbo  Audio model
 #full architecture of the project
 
 ![full application Architecture](https://github.com/TANMAY980/EchoTalk/assets/65010491/83bdbcde-786e-4428-9285-bf4805912bd5)
+#sending my voice to openai whisper-1 to decode voice in text
+![voice to whisper-1](https://github.com/TANMAY980/EchoTalk/assets/65010491/8da9daa6-f78c-4b85-9457-4a4858f773ac)
 
-![Screenshot (471)](https://github.com/TANMAY980/EchoTalk/assets/65010491/2c4e6db8-8ecc-4ed0-a88f-325bd8f817d7)
+#sending post request through fasapi
+![sending post request through fasapi](https://github.com/TANMAY980/EchoTalk/assets/65010491/fc212ba4-99cb-42f7-9378-adc91d3fde49)
+#getting succesfully response
+![getting succesfully response](https://github.com/TANMAY980/EchoTalk/assets/65010491/d47bf5bd-9eff-4154-952c-410c15761ba4)
+#usage of openai whisper after sending audio file and giving back response
+![usage of whisper](https://github.com/TANMAY980/EchoTalk/assets/65010491/0cf23ad0-bc79-4953-a7c9-69b98d6a97ff)
+#caution- in these screenshot you might see the name of the voice Ai chatbot is different during development time i set the name of the chatbot is EchoTalk and after development while testing faces some issue with the name during testing like when i say EchoTalk Whisper consfused with pronunciation so i changed it to Echo light word with clear pronunciaton althoug here also i m getting issue with the name but it recognize few times
+you can see it's correct me by saying "I am EchoTalk" currently i am getting response as a text not audio we can see in commandline
+![response from whisper](https://github.com/TANMAY980/EchoTalk/assets/65010491/bf119425-1f14-470d-9c5c-216ed97915cb)
+#in fastapi document which is builtin in fasiapi here we can see the audio file 
+![audio in fastapidoc](https://github.com/TANMAY980/EchoTalk/assets/65010491/bff02b71-8b5c-4bc2-a46d-9d540c367cc1)
+
+
+
 Backend
 Technologies-python,FastApi,chatGpt model,elvenLabs
 steps in Backend-
